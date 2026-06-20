@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wakanda – Recruit Top Freelancers</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #1a73e8;
+    --blue-dark: #1558b0;
+    --blue-light: #e8f0fe;
+    --text: #111827;
+    --muted: #6b7280;
+    --white: #ffffff;
+    --bg-blue: #1565c0;
+    --section-bg: #1565c0;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background: #fff;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 80px;
+    background: #fff;
+    border-bottom: 1px solid #f0f0f0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--blue);
+    text-decoration: none;
+  }
+
+  .logo svg { width: 28px; height: 28px; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    transition: color .2s;
+  }
+
+  .nav-links a:hover { color: var(--blue); }
+
+  .btn-primary {
+    background: var(--blue);
+    color: #fff;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background .2s;
+  }
+
+  .btn-primary:hover { background: var(--blue-dark); }
+
+  /* HERO */
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 80px 60px;
+    background: #fff;
+    min-height: 520px;
+    gap: 40px;
+  }
+
+  .hero-text { flex: 1; max-width: 480px; }
+
+  .hero-text h1 {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #111827;
+    margin-bottom: 20px;
+  }
+
+  .hero-text p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 380px;
+  }
+
+  .hero-image {
+    flex: 1;
+    max-width: 480px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+  }
+
+  .hero-blob {
+    width: 380px;
+    height: 380px;
+    background: #e3f2fd;
+    border-radius: 50% 50% 50% 30% / 60% 40% 60% 40%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-blob img {
+    width: 300px;
+    object-fit: cover;
+    filter: none;
+  }
+
+  .hero-person {
+    width: 300px;
+    height: 360px;
+    background: linear-gradient(160deg, #b3d9f5 0%, #d0eaf9 100%);
+    border-radius: 50% 50% 0 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Person SVG illustration */
+  .person-svg {
+    width: 280px;
+    height: 360px;
+  }
+
+  /* LOGOS */
+  .logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 52px;
+    padding: 32px 80px;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .logos span {
+    font-size: 18px;
+    font-weight: 700;
+    color: #9ca3af;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* FEATURES */
+  .features {
+    background: var(--section-bg);
+    color: #fff;
+    padding: 80px 80px;
+    text-align: center;
+  }
+
+  .features-eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #90caf9;
+    margin-bottom: 16px;
+  }
+
+  .features h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 56px;
+    line-height: 1.2;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .feature-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .feature-icon {
+    width: 72px;
+    height: 72px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .feature-icon svg { width: 32px; height: 32px; stroke: #fff; fill: none; stroke-width: 1.8; }
+
+  .feature-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .feature-card p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+  }
+
+  /* HOW IT WORKS */
+  .how {
+    padding: 80px 80px;
+    text-align: center;
+    background: #fff;
+  }
+
+  .how-eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 16px;
+  }
+
+  .how h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 56px;
+    color: #111827;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .step {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 32px 24px;
+    text-align: left;
+  }
+
+  .step-num {
+    width: 40px;
+    height: 40px;
+    background: var(--blue);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  .step h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .step p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    background: #f0f7ff;
+    padding: 80px;
+    text-align: center;
+  }
+
+  .testimonials-eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 16px;
+  }
+
+  .testimonials h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 48px;
+    color: #111827;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .testimonial-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px 24px;
+    text-align: left;
+    border: 1px solid #e5e7eb;
+  }
+
+  .stars { color: #f59e0b; font-size: 18px; margin-bottom: 12px; }
+
+  .testimonial-card p {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .reviewer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .reviewer-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--blue-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--blue);
+  }
+
+  .reviewer-name { font-weight: 600; font-size: 14px; }
+  .reviewer-role { font-size: 12px; color: var(--muted); }
+
+  /* CTA */
+  .cta {
+    background: var(--blue);
+    color: #fff;
+    text-align: center;
+    padding: 80px;
+  }
+
+  .cta h2 {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .cta p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 36px;
+  }
+
+  .btn-white {
+    background: #fff;
+    color: var(--blue);
+    padding: 14px 36px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity .2s;
+  }
+
+  .btn-white:hover { opacity: 0.9; }
+
+  /* FOOTER */
+  footer {
+    background: #111827;
+    color: rgba(255,255,255,0.6);
+    padding: 40px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+  }
+
+  .footer-logo {
+    font-weight: 700;
+    font-size: 18px;
+    color: #fff;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+  }
+
+  .footer-links a:hover { color: #fff; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14 3C8 3 3 8 3 14C3 20 8 25 14 25C20 25 25 20 25 14C25 8 20 3 14 3Z" fill="#e3f2fd" stroke="#1a73e8" stroke-width="1.5"/>
+      <path d="M9 14L12 17L19 10" stroke="#1a73e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Wakanda
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About us</a></li>
+    <li><a href="#">How it works</a></li>
+    <li><a href="#">For Freelancer</a></li>
+  </ul>
+  <a href="#" class="btn-primary">Get Started</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>Recruit top talented freelancer for your business</h1>
+    <p>Connect you to thousands of talented freelancer from any industry. You can have the best people in just few simple steps.</p>
+    <a href="#" class="btn-primary" style="font-size:15px; padding: 13px 28px;">Get Started</a>
+  </div>
+  <div class="hero-image">
+    <div class="hero-blob">
+      <!-- Professional person SVG illustration -->
+      <svg class="person-svg" viewBox="0 0 280 360" xmlns="http://www.w3.org/2000/svg">
+        <!-- Body / Suit -->
+        <rect x="70" y="190" width="140" height="180" rx="10" fill="#8B7355"/>
+        <!-- Shirt -->
+        <rect x="105" y="185" width="70" height="120" rx="4" fill="#d4e8f7"/>
+        <!-- Tie -->
+        <polygon points="140,195 133,220 140,275 147,220" fill="#1a73e8"/>
+        <!-- Lapels -->
+        <polygon points="70,190 105,185 140,230" fill="#7a6345"/>
+        <polygon points="210,190 175,185 140,230" fill="#7a6345"/>
+        <!-- Head -->
+        <ellipse cx="140" cy="135" rx="52" ry="60" fill="#FDBCB4"/>
+        <!-- Hair -->
+        <ellipse cx="140" cy="90" rx="52" ry="30" fill="#4a3728"/>
+        <rect x="88" y="90" width="104" height="30" rx="2" fill="#4a3728"/>
+        <!-- Glasses frame -->
+        <rect x="108" y="128" width="22" height="14" rx="5" fill="none" stroke="#333" stroke-width="2.5"/>
+        <rect x="150" y="128" width="22" height="14" rx="5" fill="none" stroke="#333" stroke-width="2.5"/>
+        <line x1="130" y1="135" x2="150" y2="135" stroke="#333" stroke-width="2"/>
+        <!-- Eyes -->
+        <ellipse cx="119" cy="134" rx="5" ry="5" fill="#333"/>
+        <ellipse cx="161" cy="134" rx="5" ry="5" fill="#333"/>
+        <ellipse cx="120" cy="132" rx="2" ry="2" fill="#fff"/>
+        <ellipse cx="162" cy="132" rx="2" ry="2" fill="#fff"/>
+        <!-- Nose -->
+        <path d="M138 142 Q140 150 142 142" stroke="#c9967f" stroke-width="1.5" fill="none"/>
+        <!-- Smile -->
+        <path d="M125 158 Q140 170 155 158" stroke="#c9967f" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- Ears -->
+        <ellipse cx="88" cy="140" rx="8" ry="11" fill="#FDBCB4"/>
+        <ellipse cx="192" cy="140" rx="8" ry="11" fill="#FDBCB4"/>
+        <!-- Arms -->
+        <rect x="25" y="190" width="52" height="110" rx="22" fill="#8B7355" transform="rotate(15 25 190)"/>
+        <rect x="193" y="190" width="52" height="110" rx="22" fill="#8B7355" transform="rotate(-15 245 190)"/>
+        <!-- Hands -->
+        <ellipse cx="60" cy="300" rx="20" ry="15" fill="#FDBCB4" transform="rotate(15 60 300)"/>
+        <ellipse cx="220" cy="300" rx="20" ry="15" fill="#FDBCB4" transform="rotate(-15 220 300)"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS -->
+<div class="logos">
+  <span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="1.5"><path d="M3 12C3 7.03 7.03 3 12 3s9 4.03 9 9-4.03 9-9 9-9-4.03-9-9z"/><path d="M3 12h18M12 3c-2.5 2.5-4 5.7-4 9s1.5 6.5 4 9M12 3c2.5 2.5 4 5.7 4 9s-1.5 6.5-4 9"/></svg>
+    airbnb
+  </span>
+  <span>Google</span>
+  <span>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="#9ca3af"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>
+    slack
+  </span>
+  <span style="letter-spacing: 2px; font-size: 20px; font-weight: 900;">NETFLIX</span>
+  <span style="font-size: 20px; font-weight: 800;">amazon</span>
+</div>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="features-eyebrow">FEATURE</div>
+  <h2>The benefit of using<br>our platform</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <h3>Professional &amp; Fast</h3>
+      <p>Get matched with verified professionals who deliver quality work on time, every time.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 7.58 7.58l.97-.89a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 17z"/></svg>
+      </div>
+      <h3>24/7 Support</h3>
+      <p>Our dedicated support team is always available to help you through every step of the project.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Safe &amp; Secure</h3>
+      <p>Your payments and personal data are protected by enterprise-grade security protocols.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="how-eyebrow">HOW IT WORKS</div>
+  <h2>Find the right talent<br>in just 3 steps</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Post a Project</h3>
+      <p>Describe your project needs and the skills you're looking for. It only takes a few minutes.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Review Proposals</h3>
+      <p>Receive bids from top freelancers. Review their portfolios, ratings, and reviews before deciding.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Hire &amp; Collaborate</h3>
+      <p>Choose the best fit, set milestones, and start working together securely through our platform.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testimonials-eyebrow">TESTIMONIALS</div>
+  <h2>What our clients say</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Wakanda helped us find an exceptional developer in under 24 hours. The quality of talent on this platform is truly outstanding."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">JM</div>
+        <div>
+          <div class="reviewer-name">James Miller</div>
+          <div class="reviewer-role">CEO, TechStartup Inc.</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"The vetting process saves us so much time. We no longer sift through hundreds of unqualified candidates — every freelancer here is top notch."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">SC</div>
+        <div>
+          <div class="reviewer-name">Sarah Chen</div>
+          <div class="reviewer-role">Product Manager, Google</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"We've hired 12 designers through Wakanda and every single one has exceeded our expectations. Highly recommend for any creative project."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">AP</div>
+        <div>
+          <div class="reviewer-name">Ahmed Patel</div>
+          <div class="reviewer-role">Creative Director, Amazon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Ready to get started?</h2>
+  <p>Join over 50,000 businesses already finding great freelancers on Wakanda.</p>
+  <a href="#" class="btn-white">Get Started — It's Free</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Wakanda</div>
+  <ul class="footer-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About us</a></li>
+    <li><a href="#">How it works</a></li>
+    <li><a href="#">For Freelancer</a></li>
+    <li><a href="#">Privacy</a></li>
+  </ul>
+  <div>© 2026 Wakanda. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
